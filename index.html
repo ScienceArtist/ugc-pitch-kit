@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UGC Brand Pitch Tracker and Offer Script Kit</title>
+  <meta name="description" content="A practical outreach pack for UGC creators who want better pitch angles, cleaner follow-ups, and a simple system for tracking brand conversations.">
+  <style>
+    :root {
+      --bg: #f7f1ea;
+      --panel: rgba(255, 251, 245, 0.94);
+      --ink: #1e1714;
+      --muted: #685c55;
+      --line: #e4d8cc;
+      --accent: #b34d2d;
+      --accent-dark: #8b3b22;
+      --soft: #f1e4d8;
+      --soft-2: #fff5eb;
+      --success: #2d6a4f;
+      --shadow: 0 24px 50px rgba(54, 34, 21, 0.10);
+      --radius: 26px;
+      --max: 1160px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.6;
+      background:
+        radial-gradient(circle at top left, rgba(179, 77, 45, 0.14), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(241, 228, 216, 0.95), transparent 22%),
+        linear-gradient(180deg, #fff9f3 0%, var(--bg) 100%);
+    }
+
+    a { color: inherit; }
+
+    img { max-width: 100%; display: block; }
+
+    .wrap {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(16px);
+      background: rgba(255, 248, 240, 0.86);
+      border-bottom: 1px solid rgba(228, 216, 204, 0.9);
+    }
+
+    .topbar-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 0;
+      font-size: 0.95rem;
+    }
+
+    .topbar-note {
+      color: var(--muted);
+    }
+
+    .mini-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 0 16px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .hero {
+      padding: 34px 0 26px;
+    }
+
+    .hero-card {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 28px;
+      align-items: center;
+      background: var(--panel);
+      border: 1px solid rgba(228, 216, 204, 0.95);
+      border-radius: 34px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-copy {
+      padding: 42px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 16px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--soft);
+      color: var(--accent-dark);
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3 {
+      margin: 0 0 14px;
+      line-height: 1.06;
+    }
+
+    h1 {
+      font-size: clamp(2.6rem, 5vw, 4.9rem);
+      max-width: 10ch;
+    }
+
+    h2 {
+      font-size: clamp(1.8rem, 3vw, 2.7rem);
+    }
+
+    h3 {
+      font-size: 1.15rem;
+    }
+
+    p {
+      margin: 0 0 16px;
+      color: var(--muted);
+      font-size: 1.04rem;
+    }
+
+    .lead {
+      font-size: 1.12rem;
+      max-width: 60ch;
+    }
+
+    .price-row {
+      display: flex;
+      align-items: end;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin: 24px 0 16px;
+    }
+
+    .price {
+      font-size: 3.25rem;
+      line-height: 1;
+      color: var(--ink);
+    }
+
+    .launch-note {
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: var(--soft-2);
+      border: 1px solid rgba(179, 77, 45, 0.16);
+      color: var(--accent-dark);
+      font-size: 0.95rem;
+      max-width: 31ch;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin: 26px 0 18px;
+    }
+
+    .button,
+    .button-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 0 22px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+    }
+
+    .button {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .button:hover {
+      background: var(--accent-dark);
+      transform: translateY(-1px);
+    }
+
+    .button-secondary {
+      border: 1px solid var(--line);
+      background: transparent;
+    }
+
+    .button-secondary:hover {
+      background: #fff;
+      transform: translateY(-1px);
+    }
+
+    .trust,
+    .mini-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .trust li,
+    .mini-list li {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.65);
+      border: 1px solid rgba(228, 216, 204, 0.9);
+    }
+
+    .hero-media {
+      height: 100%;
+      min-height: 440px;
+      background:
+        linear-gradient(135deg, rgba(179, 77, 45, 0.17), rgba(255,255,255,0)),
+        #f5ece3;
+      display: grid;
+      place-items: center;
+      padding: 28px;
+    }
+
+    .hero-shot {
+      width: min(100%, 430px);
+      border-radius: 26px;
+      box-shadow: 0 20px 38px rgba(38, 23, 14, 0.18);
+      border: 1px solid rgba(110, 80, 57, 0.12);
+      background: #fff;
+    }
+
+    .section {
+      padding: 32px 0;
+    }
+
+    .section-head {
+      margin-bottom: 18px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: 0 10px 24px rgba(58, 39, 26, 0.05);
+    }
+
+    .card p:last-child,
+    .card ul:last-child {
+      margin-bottom: 0;
+    }
+
+    .checklist {
+      margin: 0;
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    .checklist li + li {
+      margin-top: 10px;
+    }
+
+    .compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .compare-block {
+      border-radius: 22px;
+      padding: 20px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.72);
+    }
+
+    .compare-block.bad {
+      background: rgba(137, 54, 34, 0.05);
+    }
+
+    .compare-block.good {
+      background: rgba(45, 106, 79, 0.08);
+      border-color: rgba(45, 106, 79, 0.18);
+    }
+
+    .compare-block h3 {
+      margin-bottom: 8px;
+    }
+
+    .preview-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .preview-card {
+      background: rgba(255,255,255,0.75);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 10px 24px rgba(58, 39, 26, 0.05);
+    }
+
+    .preview-card img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      background: #fff;
+    }
+
+    .preview-copy {
+      padding: 16px 16px 18px;
+    }
+
+    .faq-item + .faq-item {
+      margin-top: 14px;
+    }
+
+    .faq-q {
+      color: var(--ink);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .quote {
+      font-size: 1.15rem;
+      color: var(--ink);
+      margin-bottom: 12px;
+    }
+
+    .cta {
+      text-align: center;
+      padding: 34px;
+    }
+
+    .support {
+      font-size: 0.94rem;
+      color: var(--muted);
+    }
+
+    .disclaimer {
+      font-size: 0.91rem;
+      color: var(--muted);
+      max-width: 72ch;
+      margin: 14px auto 0;
+    }
+
+    @media (max-width: 960px) {
+      .hero-card,
+      .grid-3,
+      .grid-2,
+      .preview-grid,
+      .compare {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy {
+        padding: 30px 24px 10px;
+      }
+
+      .hero-media {
+        min-height: 0;
+        padding-top: 8px;
+      }
+
+      h1 {
+        max-width: none;
+      }
+
+      .topbar-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <div class="topbar-note">UGC Brand Pitch Tracker and Offer Script Kit · Instant download · $14.99</div>
+      <a class="mini-button" href="https://www.checkout-ds24.com/product/676456" target="_blank" rel="noopener noreferrer">Buy Now</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap hero-card">
+        <div class="hero-copy">
+          <div class="eyebrow">Creator Outreach Toolkit</div>
+          <h1>Pitch brands with a sharper system, not more guesswork.</h1>
+          <p class="lead">This practical bundle helps UGC creators research brands faster, write clearer DMs and emails, and follow up with a system that feels organized instead of chaotic.</p>
+          <div class="price-row">
+            <div class="price">$14.99</div>
+            <div class="launch-note">Launch pricing for an easy first yes. You get the guide, scripts, workbook, and quick-reference assets in one download.</div>
+          </div>
+          <div class="actions">
+            <a class="button" href="https://www.checkout-ds24.com/product/676456" target="_blank" rel="noopener noreferrer">Get The Bundle</a>
+            <a class="button-secondary" href="#previews">See Real Pages</a>
+          </div>
+          <ul class="trust">
+            <li>Single payment</li>
+            <li>Downloadable bundle</li>
+            <li>Built for UGC creators and micro-influencers</li>
+          </ul>
+        </div>
+        <div class="hero-media">
+          <img class="hero-shot" src="./thumbnail-ds24.png" alt="UGC Brand Pitch Tracker and Offer Script Kit cover">
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="compare">
+          <div class="compare-block bad">
+            <h3>What outreach feels like without a system</h3>
+            <ul class="checklist">
+              <li>brand ideas buried in notes and screenshots</li>
+              <li>generic DMs that sound like everyone else</li>
+              <li>follow-ups sent too late or not at all</li>
+              <li>no clean way to compare replies, timing, or offer ideas</li>
+            </ul>
+          </div>
+          <div class="compare-block good">
+            <h3>What this bundle helps you do instead</h3>
+            <ul class="checklist">
+              <li>spot a content angle before you write the pitch</li>
+              <li>send clearer first messages with less overthinking</li>
+              <li>track follow-ups and replies in one place</li>
+              <li>move from random pitching to a repeatable outreach habit</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="inside">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>What you actually get</h2>
+          <p>Not just a pretty cover. This bundle gives you the working pieces behind cleaner brand outreach.</p>
+        </div>
+        <div class="grid grid-3">
+          <article class="card">
+            <h3>Guide + examples</h3>
+            <p>A buyer-facing PDF that walks through brand research, angle building, reply scoring, offer ladders, and filled examples you can adapt quickly.</p>
+          </article>
+          <article class="card">
+            <h3>Scripts + follow-up logic</h3>
+            <p>Use the included DM script, email script, rates reply, concept note prompt, and follow-up ladder instead of rewriting from scratch every time.</p>
+          </article>
+          <article class="card">
+            <h3>Workbook + quick-start files</h3>
+            <p>You also get a companion workbook, start-here file, usage terms, and quick visual assets so you can move from reading to using it on live outreach.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="previews">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>See real pages from the product</h2>
+          <p>These previews come from the actual bundle, so buyers can see the tone and layout before purchasing.</p>
+        </div>
+        <div class="preview-grid">
+          <article class="preview-card">
+            <img src="./page_1.png" alt="Preview of the cover and opening pages">
+            <div class="preview-copy">
+              <h3>Start with the core framework</h3>
+              <p>The guide opens with practical framing, not fluff, so buyers can understand the workflow quickly.</p>
+            </div>
+          </article>
+          <article class="preview-card">
+            <img src="./page_8.png" alt="Preview of one of the structured worksheet pages">
+            <div class="preview-copy">
+              <h3>Use structured prompts</h3>
+              <p>Templates inside the pack help turn scattered brand observations into cleaner pitch angles.</p>
+            </div>
+          </article>
+          <article class="preview-card">
+            <img src="./page_15.png" alt="Preview of copy and paste asset examples">
+            <div class="preview-copy">
+              <h3>Copy, adapt, and send</h3>
+              <p>The bundle includes practical wording and next-step structures so action feels easier.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="grid grid-2">
+          <article class="card">
+            <h2>What you leave with</h2>
+            <ul class="checklist">
+              <li>a cleaner way to research brands before you pitch</li>
+              <li>reusable scripts you can adapt without sounding robotic</li>
+              <li>a tracker that shows what to do next, not just what already happened</li>
+              <li>a stronger habit for follow-up and offer framing</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h2>Best fit for</h2>
+            <ul class="checklist">
+              <li>UGC creators pitching brands for the first time</li>
+              <li>micro-influencers who want a more professional outreach process</li>
+              <li>short-form freelancers who want less chaos and better follow-through</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="card">
+          <h2>How to use it this week</h2>
+          <ul class="checklist">
+            <li>pick ten brands you already understand</li>
+            <li>write one angle for each before drafting any message</li>
+            <li>send your first five pitches in one focused block</li>
+            <li>log follow-up dates immediately so interest does not die in your notes app</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="grid grid-2">
+          <article class="card faq-item">
+            <h2>FAQ</h2>
+            <div class="faq-item">
+              <div class="faq-q">Is this a course?</div>
+              <p>No. It is a practical download bundle with a PDF guide, workbook, scripts, and support files.</p>
+            </div>
+            <div class="faq-item">
+              <div class="faq-q">Will this guarantee brand deals?</div>
+              <p>No. It is designed to improve how you research, pitch, and follow up. It does not promise replies, deals, or earnings.</p>
+            </div>
+            <div class="faq-item">
+              <div class="faq-q">Can I use it for client work?</div>
+              <p>Yes, for your own direct client work that you personally deliver. It is a single-user license and not for resale or redistribution.</p>
+            </div>
+          </article>
+          <article class="card">
+            <h2>Why buy this instead of waiting?</h2>
+            <p class="quote">Because most outreach friction is not talent. It is messy process.</p>
+            <p>If you already know you need a cleaner system for angles, scripts, follow-ups, and offer framing, this bundle gets you moving faster than trying to piece everything together from random videos and screenshots.</p>
+            <ul class="mini-list">
+              <li>Instant download</li>
+              <li>Low-risk price point</li>
+              <li>Built for immediate use</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="card cta">
+          <h2>Get the full bundle for $14.99</h2>
+          <p>One-time payment through Digistore24. You&rsquo;ll get the guide, workbook, preview assets, and support files in one download.</p>
+          <div class="actions" style="justify-content:center;">
+            <a class="button" href="https://www.checkout-ds24.com/product/676456" target="_blank" rel="noopener noreferrer">Go To Checkout</a>
+            <a class="button-secondary" href="#previews">Review The Preview Pages</a>
+          </div>
+          <p class="support">Support: <a href="mailto:scienceartist@atomicmail.io">scienceartist@atomicmail.io</a></p>
+          <p class="disclaimer">This is a workflow and template product for educational and operational support use only. It does not promise guaranteed replies, paid deals, or earnings.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
